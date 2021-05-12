@@ -1,7 +1,8 @@
 /*
  * Comandos para sincronizar localmente desde el respositorio
- * git pull origin master
  * git stash (1 vez)
+ * git pull origin master
+ *
  *
  * main.c
  *
@@ -79,7 +80,7 @@ struct _job
 
 //static
 const struct _job emptyJob;
-struct _job keyX3, keyA,keyB,keyC,keyP1, keyP2;
+struct _job keyX3, keyA,keyB,keyC,keyP1,keyP2;
 struct _job buzzer;
 
 
@@ -288,6 +289,11 @@ int main(void)
 
 	keyA.f.enable = keyB.f.enable = keyC.f.enable = keyX3.f.enable = keyP1.f.enable = keyP2.f.enable = 1;
 
+	//Inicia con secuencia en B
+	PinTo0(PORTWxOUT_Z, PINxOUT_Z);
+	__delay_ms(RELAY_TIMESWITCHING);
+	PinTo1(PORTWxOUT_Y, PINxOUT_Y);
+
 	while (1)
 	{
 		if (isr_flag.f1ms)
@@ -387,6 +393,8 @@ int main(void)
 								keyP1.f.job = 1;
 
 								//
+								PinTo1(PORTWxLED1, PINxLED1);//add
+
 								buzzer.mode = BUZZERMODE_X3_SEQUENCER;
 								buzzer.sm0 = 0;
 								buzzer.f.job = 1;
@@ -550,6 +558,7 @@ int main(void)
 						PinTo0(PORTWxOUT_4, PINxOUT_4);
 						//
 						PinTo0(PORTWxBUZZER, PINxBUZZER);
+						PinTo0(PORTWxLED1, PINxLED1);//add
 						buzzer = emptyJob;
 
 						//+ADD
@@ -577,6 +586,9 @@ int main(void)
 					keyP2.f.lock = 0;
 
 					PinTo0(PORTWxBUZZER, PINxBUZZER);
+
+					PinTo0(PORTWxLED1, PINxLED1);//add
+
 					buzzer = emptyJob;
 					//
 					keyA.f.enable = keyB.f.enable = keyC.f.enable = 1;//Enable A,B,C
@@ -603,6 +615,7 @@ int main(void)
 				{
 					if (buzzer.sm0 == 0)
 					{
+
 						PinTo1(PORTWxBUZZER, PINxBUZZER);
 						buzzer.counter = 0;
 						buzzer.sm0++;
@@ -613,7 +626,10 @@ int main(void)
 						{
 							if (++buzzer.counter >= BUZZER_TACTSW_KTIME)
 							{
+
 								PinTo0(PORTWxBUZZER, PINxBUZZER);
+
+
 								buzzer.counter = 0;
 								buzzer.sm0 = 0x0;
 								buzzer.f.job = 0;
@@ -625,6 +641,9 @@ int main(void)
 				{
 					if (buzzer.sm0 == 0)
 					{
+						//add
+						PinTo1(PORTWxLED1, PINxLED1);
+						//
 						PinTo1(PORTWxBUZZER, PINxBUZZER);
 						buzzer.counter = 0;
 						buzzer.sm0++;
@@ -635,6 +654,9 @@ int main(void)
 						{
 							if (++buzzer.counter >= BUZZER_X3_KTIME )
 							{
+								//add
+								PinToggle(PORTWxLED1, PINxLED1);
+								//
 								PinToggle(PORTWxBUZZER, PINxBUZZER);
 								buzzer.counter = 0;
 								//buzzer.sm0 = 0x0;
