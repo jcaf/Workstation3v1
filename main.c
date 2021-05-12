@@ -393,7 +393,7 @@ int main(void)
 								keyP1.f.job = 1;
 
 								//
-								PinTo1(PORTWxLED1, PINxLED1);//add
+								PinTo1(PORTWxLED2, PINxLED2);//add
 
 								buzzer.mode = BUZZERMODE_X3_SEQUENCER;
 								buzzer.sm0 = 0;
@@ -587,7 +587,7 @@ int main(void)
 
 					PinTo0(PORTWxBUZZER, PINxBUZZER);
 
-					PinTo0(PORTWxLED1, PINxLED1);//add
+					PinTo0(PORTWxLED2, PINxLED2);//add
 
 					buzzer = emptyJob;
 					//
