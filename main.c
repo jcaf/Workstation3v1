@@ -642,7 +642,8 @@ int main(void)
 					if (buzzer.sm0 == 0)
 					{
 						//add
-						PinTo1(PORTWxLED1, PINxLED1);
+						if (keyX3.f.job)
+						{PinTo1(PORTWxLED1, PINxLED1);}
 						//
 						PinTo1(PORTWxBUZZER, PINxBUZZER);
 						buzzer.counter = 0;
@@ -655,7 +656,8 @@ int main(void)
 							if (++buzzer.counter >= BUZZER_X3_KTIME )
 							{
 								//add
-								PinToggle(PORTWxLED1, PINxLED1);
+								if (keyX3.f.job)
+								{PinToggle(PORTWxLED1, PINxLED1);}
 								//
 								PinToggle(PORTWxBUZZER, PINxBUZZER);
 								buzzer.counter = 0;
