@@ -362,22 +362,21 @@ int main(void)
 					{
 						if ( (!keyX3.f.job) && (!keyP1.f.job) )
 						{
-							keyP1.f.enable = 0;
-							keyP2.f.enable = 0;
-							keyA.f.enable = keyB.f.enable = keyC.f.enable = 0;//Disable A,B,C
+							if (keyX3.f.enable)
+							{
+								keyP1.f.enable = 0;
+								keyP2.f.enable = 0;
+								keyA.f.enable = keyB.f.enable = keyC.f.enable = 0;//Disable A,B,C
 
-							//Bloquea X1,X2,X4 y X5 hasta que termine todo el job
-							//-->uso !job para bloquear
+								keyX3.f.job = 1;
+								keyX3.sm0 = 0;
+								//
+								buzzer.mode = BUZZERMODE_X3_SEQUENCER;
+								buzzer.sm0 = 0;
+								buzzer.f.job = 1;
+								//
 
-							//keyX3.key_sm0 = 0x00; //Reingresa habilitando A,B,C
-							//
-							keyX3.f.job = 1;
-							keyX3.sm0 = 0;
-							//
-							buzzer.mode = BUZZERMODE_X3_SEQUENCER;
-							buzzer.sm0 = 0;
-							buzzer.f.job = 1;
-							//
+							}
 						}
 					}
 
