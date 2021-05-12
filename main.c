@@ -294,6 +294,8 @@ int main(void)
 	__delay_ms(RELAY_TIMESWITCHING);
 	PinTo1(PORTWxOUT_Y, PINxOUT_Y);
 
+	keyP2.f.lock = 1;
+
 	while (1)
 	{
 		if (isr_flag.f1ms)
