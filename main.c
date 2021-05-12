@@ -376,7 +376,6 @@ int main(void)
 							buzzer.sm0 = 0;
 							buzzer.f.job = 1;
 							//
-
 						}
 					}
 
@@ -389,6 +388,7 @@ int main(void)
 								keyP1.f.lock = 1;
 								keyP2.f.lock = 1;
 								keyA.f.enable = keyB.f.enable = keyC.f.enable = 0;//Disable A,B,C
+								keyX3.f.enable = 0;
 								//
 								keyP1.f.job = 1;
 
@@ -414,6 +414,7 @@ int main(void)
 								keyP2.f.lock = 1;
 								//
 								keyA.f.enable = keyB.f.enable = keyC.f.enable = 0;//Disable A,B,C
+								keyX3.f.enable = 0;
 								//
 								keyP2.f.job = 1;
 								//
@@ -592,6 +593,7 @@ int main(void)
 					buzzer = emptyJob;
 					//
 					keyA.f.enable = keyB.f.enable = keyC.f.enable = 1;//Enable A,B,C
+					keyX3.f.enable = 1;
 				}
 			}
 			if (keyP2.f.job)
@@ -604,6 +606,7 @@ int main(void)
 					//keyP2.f.lock = 0;
 					//
 					keyA.f.enable = keyB.f.enable = keyC.f.enable = 1;//Enable A,B,C
+					keyX3.f.enable = 1;
 				}
 			}
 
