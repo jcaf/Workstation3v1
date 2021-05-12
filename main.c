@@ -592,8 +592,9 @@ int main(void)
 
 					buzzer = emptyJob;
 					//
-					keyA.f.enable = keyB.f.enable = keyC.f.enable = 1;//Enable A,B,C
-					keyX3.f.enable = 1;
+
+					//keyA.f.enable = keyB.f.enable = keyC.f.enable = 1;//Enable A,B,C
+					//keyX3.f.enable = 1;
 				}
 			}
 			if (keyP2.f.job)
