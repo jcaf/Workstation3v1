@@ -563,7 +563,7 @@ int main(void)
 
 						//+ADD
 						keyA.f.enable = keyB.f.enable = keyC.f.enable = 1;//enable A,B,C
-
+						keyP1.f.enable = keyP2.f.enable = 1;
 					}
 				}
 			}
